@@ -26,5 +26,11 @@ public class CustomerController {
 		
 		return ResponseEntity.ok(customer);
 	}
+	
+	@GetMapping("/ping")
+	public String ping()
+	{
+		return "PING";
+	}
 
 }
