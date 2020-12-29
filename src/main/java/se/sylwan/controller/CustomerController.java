@@ -78,6 +78,7 @@ public class CustomerController {
 	@GetMapping("/ping")
 	public String ping()
 	{
+		customerRepository.save(new Customer("Cas","Cas","Cas","Cas"));
 		return "PING";
 	}
 
