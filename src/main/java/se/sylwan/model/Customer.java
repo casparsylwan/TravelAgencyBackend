@@ -19,7 +19,7 @@ public class Customer {
 	
 	private String lastName;
 	
-	@Column(name="roles_travel")
+//	@Column(name="roles_travel")
 	private String roles;
 	
 	@Column(name="active_member")
