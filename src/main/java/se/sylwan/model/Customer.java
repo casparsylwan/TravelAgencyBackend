@@ -19,8 +19,10 @@ public class Customer {
 	
 	private String lastName;
 	
+	@Column(name="roles_travel")
 	private String roles;
 	
+	@Column(name="active_member")
 	private boolean active = true;
 	
 	
