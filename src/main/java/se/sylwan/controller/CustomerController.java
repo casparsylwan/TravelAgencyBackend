@@ -81,7 +81,7 @@ public class CustomerController {
 	public String ping()
 	{
 		//customerRepository.save(new Customer("Cas","Cas","Cas","Cas"));
-		return "{ping:'PING'}";
+		return "{ping:\"PING\"}";
 	}
 
 }
