@@ -21,7 +21,7 @@ public class Customer {
 	
 	private String roles;
 	
-	private boolean active;
+	private boolean active = true;
 	
 	
 	
