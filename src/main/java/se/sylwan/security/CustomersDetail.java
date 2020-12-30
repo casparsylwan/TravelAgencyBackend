@@ -30,12 +30,14 @@ public class CustomersDetail implements UserDetails {
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
+		System.out.println(customer.getPassword());
 		return customer.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
+		System.out.println(customer.getEmail());
 		return customer.getEmail();
 	}
 

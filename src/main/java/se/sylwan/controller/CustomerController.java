@@ -58,19 +58,18 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value="/authenticate", method = RequestMethod.POST)
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authticationRequest) throws Exception{
+	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception{
 		try {
 			autenticationManger.authenticate(
-				new UsernamePasswordAuthenticationToken(authticationRequest.getUsername(), authticationRequest.getPassword())
+				new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
 				);			
 		}
 		catch(BadCredentialsException e)
 		{
 			throw new Exception("Incorrect username or password", e);
 		}
-		final CustomersDetail customersDetail = (CustomersDetail) customerDetailsService.loadUserByUsername(authticationRequest.getUsername()); 
-		final String jwt = jwtTokenUtil.generateToken(customersDetail);
-		System.out.println(jwt);
+		final UserDetails userDetails = customerDetailsService.loadUserByUsername(authenticationRequest.getUsername()); 
+		final String jwt = jwtTokenUtil.generateToken(userDetails);
 		
 		return ResponseEntity.ok(new AuthenticationResponse(jwt));
 		

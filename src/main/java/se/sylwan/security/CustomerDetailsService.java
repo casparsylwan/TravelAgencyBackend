@@ -1,6 +1,9 @@
 package se.sylwan.security;
 
+import java.util.ArrayList;
 import java.util.Optional;
+
+import org.springframework.security.core.userdetails.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,10 +24,20 @@ public class CustomerDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 		
 		Optional<Customer> customer = customerRepository.findById(userName);
-		System.out.println("Customer");
-		customer.orElseThrow(() -> new UsernameNotFoundException("Email not found: " + userName));
 		
-		return customer.map(CustomersDetail::new).get();
+		customer.orElseThrow(() -> new UsernameNotFoundException("Email not found: " + userName));
+		Customer customerExist = null;
+		
+		if(customer.isPresent())
+		{
+			customerExist = customer.get();
+		}
+		
+//		 customer.map(CustomersDetail::new).get();
+		
+		
+		return new User(customerExist.getEmail(), customerExist.getPassword(),
+                new ArrayList<>());
 	}
 
 }
