@@ -22,7 +22,6 @@ import se.sylwan.repository.CustomerRepository;
 import se.sylwan.security.AuthenticationRequest;
 import se.sylwan.security.AuthenticationResponse;
 import se.sylwan.security.CustomerDetailsService;
-import se.sylwan.security.CustomersDetail;
 import se.sylwan.security.JwtUtil;
 
 
@@ -46,9 +45,10 @@ public class CustomerController {
 	@GetMapping("/customer/{email}")
 	public ResponseEntity<Customer> getCustomerByEmail(@PathVariable String email)
 	{
+		System.out.println("Hej första!");
 		Customer customer = customerRepository.findById(email)
 				.orElseThrow(() -> new ResourceNotFoundException("Customer with email could not be found: " + email));
-		
+		System.out.println("Hej sista!");
 		return ResponseEntity.ok(customer);
 	}
 	
