@@ -28,6 +28,7 @@ import se.sylwan.security.JwtUtil;
 
 @RestController
 @RequestMapping("/api/v1/")
+@CrossOrigin(origins = "https://localhost:4200", methods = {RequestMethod.POST, RequestMethod.GET})
 public class CustomerController {
 		
 	@Autowired
@@ -42,7 +43,6 @@ public class CustomerController {
 	@Autowired
 	private CustomerRepository customerRepository;
 	
-	@CrossOrigin(origins = "https://localhost:4200")
 	@GetMapping("/customer/{email}")
 	public ResponseEntity<Customer> getCustomerByEmail(@PathVariable String email)
 	{
@@ -52,7 +52,6 @@ public class CustomerController {
 		return ResponseEntity.ok(customer);
 	}
 	
-	@CrossOrigin(origins = "https://localhost:4200")
 	@PostMapping("/customer/new")
 	public void saveCustomer(@RequestBody Customer customer)
 	{
