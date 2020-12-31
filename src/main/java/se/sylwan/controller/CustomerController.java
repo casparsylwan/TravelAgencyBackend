@@ -28,7 +28,7 @@ import se.sylwan.security.JwtUtil;
 
 @RestController
 @RequestMapping("/api/v1/")
-@CrossOrigin(origins = "https://localhost:4200", methods = {RequestMethod.POST, RequestMethod.GET})
+@CrossOrigin
 public class CustomerController {
 		
 	@Autowired
