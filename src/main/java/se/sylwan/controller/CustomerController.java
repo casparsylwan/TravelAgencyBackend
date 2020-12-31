@@ -25,7 +25,7 @@ import se.sylwan.security.CustomerDetailsService;
 import se.sylwan.security.CustomersDetail;
 import se.sylwan.security.JwtUtil;
 
-@CrossOrigin(origins = "http://localhost:4200")
+
 @RestController
 @RequestMapping("/api/v1/")
 public class CustomerController {
@@ -42,6 +42,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerRepository customerRepository;
 	
+	@CrossOrigin(origins = "https://localhost:4200")
 	@GetMapping("/customer/{email}")
 	public ResponseEntity<Customer> getCustomerByEmail(@PathVariable String email)
 	{
@@ -51,12 +52,14 @@ public class CustomerController {
 		return ResponseEntity.ok(customer);
 	}
 	
+	@CrossOrigin(origins = "https://localhost:4200")
 	@PostMapping("/customer/new")
 	public void saveCustomer(@RequestBody Customer customer)
 	{
 		customerRepository.save(customer);
 	}
 	
+	@CrossOrigin(origins = "https://localhost:4200")
 	@RequestMapping(value="/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception{
 		try {
