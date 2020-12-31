@@ -51,7 +51,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter{
 //			.and()
 //			.authorizeRequests().antMatchers("/api/v1/customer/**").hasAnyRole("ADMIN", "CUSTOMER")
 //			.anyRequest().authenticated();
-		http.csrf().disable()
+		http.cors().and().csrf().disable()
 		.authorizeRequests().antMatchers("/api/v1/authenticate", "/api/v1/ping", "/api/v1/customer/new").permitAll().
 				anyRequest().authenticated().and().
 				exceptionHandling().and().sessionManagement()
