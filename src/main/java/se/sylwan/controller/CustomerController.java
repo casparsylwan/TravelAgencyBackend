@@ -25,7 +25,7 @@ import se.sylwan.security.CustomerDetailsService;
 import se.sylwan.security.CustomersDetail;
 import se.sylwan.security.JwtUtil;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1/")
 public class CustomerController {
