@@ -1,5 +1,16 @@
 package se.sylwan.config;
 
+import java.util.Arrays;
+import java.util.Collections;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -74,6 +85,20 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter{
 //			.and().formLogin();
 //		
 //	}
+	
+	@Bean
+	public CorsFilter corsFilter() {
+	    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+
+	    final CorsConfiguration config = new CorsConfiguration();
+	    config.setAllowCredentials(false);
+	    config.setAllowedOrigins(Collections.singletonList("*"));
+	    config.setAllowedHeaders(Arrays.asList("*"));
+	    config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+
+	    source.registerCorsConfiguration("/**", config);
+	    return new CorsFilter(source);
+	}
 	
 	
 
