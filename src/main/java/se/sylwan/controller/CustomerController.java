@@ -59,7 +59,7 @@ public class CustomerController {
 		customerRepository.save(customer);
 	}
 	
-	@CrossOrigin(origins = "https://localhost:4200")
+	
 	@RequestMapping(value="/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception{
 		try {
