@@ -86,6 +86,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter{
 //		
 //	}
 	
+	//https://stackoverflow.com/questions/55680170/angular-7-and-spring-boot-app-no-access-control-allow-origin-header-is-pres
+	
 	@Bean
 	public CorsFilter corsFilter() {
 	    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

@@ -45,17 +45,22 @@ public class CustomerController {
 	@GetMapping("/customer/{email}")
 	public ResponseEntity<Customer> getCustomerByEmail(@PathVariable String email)
 	{
-		System.out.println("Hej första!");
+		
 		Customer customer = customerRepository.findById(email)
 				.orElseThrow(() -> new ResourceNotFoundException("Customer with email could not be found: " + email));
-		System.out.println("Hej sista!");
 		return ResponseEntity.ok(customer);
 	}
 	
 	@PostMapping("/customer/new")
-	public void saveCustomer(@RequestBody Customer customer)
+	public Customer saveCustomer(@RequestBody Customer customer)
 	{
+		if(customerRepository.existsById(customer.getEmail()))
+		{
+			
+		}
 		customerRepository.save(customer);
+		
+		return customer;
 	}
 	
 	
