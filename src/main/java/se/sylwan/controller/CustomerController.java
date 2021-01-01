@@ -59,7 +59,7 @@ public class CustomerController {
 		if(customerRepository.existsById(customer.getEmail()))
 		{
 			System.out.println("Test finns 2");
-			new ResourceAlreadyExsistException("Email already exsist take an other email" + customer.getEmail());
+			throw new ResourceAlreadyExsistException("Email already exsist take an other email" + customer.getEmail());
 		}
 		customerRepository.save(customer);
 		
