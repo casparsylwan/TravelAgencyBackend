@@ -16,6 +16,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import se.sylwan.exception.ResourceAlreadyExsistException;
 import se.sylwan.exception.ResourceNotFoundException;
 import se.sylwan.model.Customer;
 import se.sylwan.repository.CustomerRepository;
@@ -56,7 +57,7 @@ public class CustomerController {
 	{
 		if(customerRepository.existsById(customer.getEmail()))
 		{
-			
+			new ResourceAlreadyExsistException("Email already exsist take an other email" + customer.getEmail());
 		}
 		customerRepository.save(customer);
 		
