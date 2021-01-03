@@ -37,6 +37,9 @@ public class TravelController {
 		{
 			throw new ResourceAlreadyExsistException("Airport already exsist: " + airport.getName()); 
 		}
+		
+		airportRepository.save(airport);
+		
 		return airport;
 	}
 
