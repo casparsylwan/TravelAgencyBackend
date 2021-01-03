@@ -55,10 +55,9 @@ public class CustomerController {
 	@PostMapping("/customer/new")
 	public Customer saveCustomer(@RequestBody Customer customer)
 	{
-		System.out.println("Test finns");
+		
 		if(customerRepository.existsById(customer.getEmail()))
 		{
-			System.out.println("Test finns 2");
 			throw new ResourceAlreadyExsistException("Email already exsist take an other email" + customer.getEmail());
 		}
 		customerRepository.save(customer);
