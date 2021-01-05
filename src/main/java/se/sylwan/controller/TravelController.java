@@ -13,13 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import se.sylwan.exception.ResourceAlreadyExsistException;
 import se.sylwan.model.Airport;
+import se.sylwan.model.Travel;
 import se.sylwan.repository.AirportRepository;
+import se.sylwan.repository.TravelRepositiory;
 
 @RestController
 @RequestMapping("/api/v1/")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TravelController {
 	
+	@Autowired
+	private TravelRepositiory travelRepositiory;
 	
 	@Autowired
 	private AirportRepository airportRepository;
@@ -42,5 +46,17 @@ public class TravelController {
 		
 		return airport;
 	}
-
+	
+	@GetMapping("/travel/all")
+	public List<Travel> getAllTravel()
+	{
+		return travelRepositiory.findAll();
+	}
+	
+	@PostMapping("/travel/new")
+	public Travel createNewTravel(@RequestBody Travel travel)
+	{
+		travelRepositiory.save(travel);
+		return travel;
+	}
 }

@@ -1,8 +1,11 @@
 package se.sylwan.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 
 
@@ -25,11 +28,11 @@ public class Customer {
 	@Column(name="active_member")
 	private boolean active = true;
 	
+	@ManyToMany(mappedBy = "customer")
+	private List<Travel> travelOrders;
 	
 	
 	public Customer() {}
-
-
 
 	public Customer(String email, String password, String firstName, String lastName, String roles, boolean active) {
 		super();
@@ -142,10 +145,13 @@ public class Customer {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
-	
-	
-	
 
+	public List<Travel> getTravelOrders() {
+		return travelOrders;
+	}
+
+	public void setTravelOrders(List<Travel> travelOrders) {
+		this.travelOrders = travelOrders;
+	}
 	
 }
