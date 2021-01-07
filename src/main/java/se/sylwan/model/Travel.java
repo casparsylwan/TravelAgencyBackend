@@ -1,5 +1,6 @@
 package se.sylwan.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -34,8 +35,8 @@ public class Travel {
 	@JoinColumn(name = "arrival")
 	private Airport toAirport;
 	
-	@Column(columnDefinition = "TIMESTAMP")
-	private Date depatureDate;
+	
+	private Timestamp depatureDate;
 	
 	private Integer price;
 
@@ -43,7 +44,7 @@ public class Travel {
 		super();
 	}
 
-	public Travel(long id, Airport fromAirport, Airport toAirport, Date depatureDate, Integer price) {
+	public Travel(long id, Airport fromAirport, Airport toAirport, Timestamp depatureDate, Integer price) {
 		super();
 		this.id = id;
 		this.fromAirport = fromAirport;
@@ -76,11 +77,11 @@ public class Travel {
 		this.toAirport = toAirport;
 	}
 
-	public Date getDepatureDate() {
+	public Timestamp getDepatureDate() {
 		return depatureDate;
 	}
 
-	public void setDepatureDate(Date depatureDate) {
+	public void setDepatureDate(Timestamp depatureDate) {
 		this.depatureDate = depatureDate;
 	}
 
