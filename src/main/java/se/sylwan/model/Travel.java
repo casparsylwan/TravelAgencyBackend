@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 public class Travel {
 	
@@ -35,7 +37,7 @@ public class Travel {
 	@JoinColumn(name = "arrival")
 	private Airport toAirport;
 	
-	@UpdateTimestamp
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm")
 	private Timestamp depatureDate;
 	
 	private Integer price;
