@@ -36,17 +36,20 @@ public class Travel {
 	
 	@Column(columnDefinition = "TIMESTAMP")
 	private Date depatureDate;
+	
+	private Integer price;
 
 	public Travel() {
 		super();
 	}
 
-	public Travel(long id, Airport fromAirport, Airport toAirport, Date depatureDate) {
+	public Travel(long id, Airport fromAirport, Airport toAirport, Date depatureDate, Integer price) {
 		super();
 		this.id = id;
 		this.fromAirport = fromAirport;
 		this.toAirport = toAirport;
 		this.depatureDate = depatureDate;
+		this.price = price;
 	}
 
 	public long getId() {
@@ -88,7 +91,13 @@ public class Travel {
 	public void setCustomer(List<Customer> customer) {
 		this.customer = customer;
 	}
-	
-	
-	
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+		
 }
