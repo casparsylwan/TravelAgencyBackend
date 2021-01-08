@@ -1,5 +1,7 @@
 package se.sylwan.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -50,6 +52,12 @@ public class CustomerController {
 		Customer customer = customerRepository.findById(email)
 				.orElseThrow(() -> new ResourceNotFoundException("Customer with email could not be found: " + email));
 		return ResponseEntity.ok(customer);
+	}
+	
+	@GetMapping("/customers/all")
+	public List<Customer> getAllCustomers()
+	{		
+		return customerRepository.findAll();
 	}
 	
 	@PostMapping("/customer/new")
