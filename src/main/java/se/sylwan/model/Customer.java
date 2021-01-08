@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 
 @Entity()
@@ -29,6 +31,7 @@ public class Customer {
 	private boolean active = true;
 	
 	@ManyToMany(mappedBy = "customer")
+	@JsonProperty("orders")
 	private List<Travel> travelOrders;
 	
 	
