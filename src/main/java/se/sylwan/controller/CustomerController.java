@@ -77,7 +77,10 @@ public class CustomerController {
 		for(Travel travel: customerUpdate.getTravelOrders())
 		{
 			travel.getCustomer().add(customer);
-			travelRepository.save(travel);
+			if( travelRepository.existsById(travel.getId()))
+			{
+				travelRepository.save(travel);
+			}  
 		}
 		
 		
