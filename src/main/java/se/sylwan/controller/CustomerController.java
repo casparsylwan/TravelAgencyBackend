@@ -74,7 +74,7 @@ public class CustomerController {
 							orElseThrow(() -> new ResourceNotFoundException("Customer could not be found: Loggin again! "));
 		
 		travelRepository.saveAll(customerUpdate.getTravelOrders());
-		
+		customerRepository.save(customer);
 //		customer.getTravelOrders().addAll(customerUpdate.getTravelOrders());
 //		for(Travel travel: customerUpdate.getTravelOrders())
 //		{
@@ -86,7 +86,7 @@ public class CustomerController {
 //		}
 		
 		
-//		customerRepository.save(customer);
+//		;
 		
 							
 		return customer;
