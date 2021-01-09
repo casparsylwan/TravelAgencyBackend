@@ -158,5 +158,13 @@ public class Customer {
 	public void setTravelOrders(List<Travel> travelOrders) {
 		this.travelOrders = travelOrders;
 	}
-	
+
+	public boolean isPaid() {
+		return paid;
+	}
+
+	public void setPaid(boolean paid) {
+		this.paid = paid;
+	}
+		
 }
