@@ -73,7 +73,7 @@ public class CustomerController {
 		Customer customer = customerRepository.findByEmail(customerUpdate.getEmail()).
 							orElseThrow(() -> new ResourceNotFoundException("Customer could not be found: Loggin again! "));
 		
-		customer.getTravelOrders().addAll(customerUpdate.getTravelOrders());
+//		customer.getTravelOrders().addAll(customerUpdate.getTravelOrders());
 		for(Travel travel: customerUpdate.getTravelOrders())
 		{
 			travel.getCustomer().add(customer);
@@ -84,7 +84,7 @@ public class CustomerController {
 		}
 		
 		
-		customerRepository.save(customer);
+//		customerRepository.save(customer);
 		
 							
 		return customer;
