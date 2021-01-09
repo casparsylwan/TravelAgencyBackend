@@ -21,6 +21,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import se.sylwan.exception.ResourceAlreadyExsistException;
 import se.sylwan.exception.ResourceNotFoundException;
 import se.sylwan.model.Customer;
+import se.sylwan.model.Travel;
 import se.sylwan.repository.CustomerRepository;
 import se.sylwan.repository.TravelRepositiory;
 import se.sylwan.security.AuthenticationRequest;
@@ -73,6 +74,11 @@ public class CustomerController {
 							orElseThrow(() -> new ResourceNotFoundException("Customer could not be found: Loggin again! "));
 		
 		customer.getTravelOrders().addAll(customerUpdate.getTravelOrders());
+		for(Travel travel: customerUpdate.getTravelOrders())
+		{
+			travel.getCustomer().add(customer);
+			travelRepository.save(travel);
+		}
 		
 		
 		customerRepository.save(customer);
