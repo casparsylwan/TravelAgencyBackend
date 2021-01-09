@@ -60,6 +60,17 @@ public class CustomerController {
 		return customerRepository.findAll();
 	}
 	
+	@PostMapping("/customer/update")
+	public Customer updateCustomer(@RequestBody Customer customer)
+	{
+		
+		customerRepository.save(customer);
+		
+		return customer;
+	}
+	
+	
+	
 	@PostMapping("/customer/new")
 	public Customer saveCustomer(@RequestBody Customer customer)
 	{
