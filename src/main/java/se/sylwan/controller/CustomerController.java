@@ -61,11 +61,16 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/customer/update")
-	public Customer updateCustomer(@RequestBody Customer customer)
+	public Customer updateCustomer(@RequestBody Customer customerUpdate)
 	{
 		
-		customerRepository.save(customer);
 		
+		Customer customer = customerRepository.findByEmail(customerUpdate.getEmail()).
+							orElseThrow(() -> new ResourceNotFoundException("Customer could not be found: Loggin again! "));
+		
+		customer.setTravelOrders(customerUpdate.getTravelOrders());
+		customerRepository.save(customer);					
+							
 		return customer;
 	}
 	
