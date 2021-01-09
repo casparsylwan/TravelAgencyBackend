@@ -33,7 +33,6 @@ public class Customer {
 	
 	@ManyToMany(mappedBy = "customer")
 	@JsonProperty("orders")
-	@JsonIgnore
 	private List<Travel> travelOrders;	
 	
 	public Customer() {}

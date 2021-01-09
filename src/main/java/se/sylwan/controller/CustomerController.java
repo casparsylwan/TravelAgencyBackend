@@ -73,6 +73,8 @@ public class CustomerController {
 		Customer customer = customerRepository.findByEmail(customerUpdate.getEmail()).
 							orElseThrow(() -> new ResourceNotFoundException("Customer could not be found: Loggin again! "));
 		
+		customerUpdate.getTravelOrders().forEach((order)-> order.getCustomer().add(customerUpdate));
+		
 		travelRepository.saveAll(customerUpdate.getTravelOrders());
 		customerRepository.save(customer);
 //		customer.getTravelOrders().addAll(customerUpdate.getTravelOrders());
