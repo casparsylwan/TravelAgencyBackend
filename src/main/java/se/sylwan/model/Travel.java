@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Travel {
@@ -27,6 +28,7 @@ public class Travel {
 	@JoinTable(name="customer_travel",
     joinColumns=@JoinColumn(name="email"),
     inverseJoinColumns=@JoinColumn(name="travel_id"))
+	@JsonIgnore
 	private List<Customer> customer;
 	
 	@ManyToOne
