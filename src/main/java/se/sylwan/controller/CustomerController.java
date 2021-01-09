@@ -68,20 +68,11 @@ public class CustomerController {
 	public Customer updateCustomer(@RequestBody Customer customerUpdate)
 	{
 		
-		
+		System.out.println("CASPAR CASPAR");
 		Customer customer = customerRepository.findByEmail(customerUpdate.getEmail()).
 							orElseThrow(() -> new ResourceNotFoundException("Customer could not be found: Loggin again! "));
 		
-		customer.setTravelOrders(customerUpdate.getTravelOrders());
-		customer.getTravelOrders().stream().forEach(travel -> {
-			System.out.println(travel.getCustomer().size()); 
-			travelRepository.save(travel);
-		});
-//		for(int i = 0; i<customer.getTravelOrders().size(); i++)
-//		{
-//			
-//		}
-		
+		customer.getTravelOrders().addAll(customerUpdate.getTravelOrders());
 		
 		
 		customerRepository.save(customer);
