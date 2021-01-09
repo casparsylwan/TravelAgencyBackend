@@ -74,14 +74,14 @@ public class CustomerController {
 							orElseThrow(() -> new ResourceNotFoundException("Customer could not be found: Loggin again! "));
 		
 //		customer.getTravelOrders().addAll(customerUpdate.getTravelOrders());
-		for(Travel travel: customerUpdate.getTravelOrders())
-		{
-			travel.getCustomer().add(customer);
-			if( travelRepository.existsById(travel.getId()))
-			{
-				travelRepository.save(travel);
-			}  
-		}
+//		for(Travel travel: customerUpdate.getTravelOrders())
+//		{
+//			travel.getCustomer().add(customer);
+//			if( travelRepository.existsById(travel.getId()))
+//			{
+//				travelRepository.save(travel);
+//			}  
+//		}
 		
 		
 //		customerRepository.save(customer);
