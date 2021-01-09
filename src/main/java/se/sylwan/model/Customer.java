@@ -34,6 +34,8 @@ public class Customer {
 	@JsonProperty("orders")
 	private List<Travel> travelOrders;
 	
+	private boolean paid  = false;
+	
 	
 	public Customer() {}
 
