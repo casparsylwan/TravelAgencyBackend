@@ -22,6 +22,7 @@ import se.sylwan.exception.ResourceAlreadyExsistException;
 import se.sylwan.exception.ResourceNotFoundException;
 import se.sylwan.model.Customer;
 import se.sylwan.repository.CustomerRepository;
+import se.sylwan.repository.TravelRepositiory;
 import se.sylwan.security.AuthenticationRequest;
 import se.sylwan.security.AuthenticationResponse;
 import se.sylwan.security.CustomerDetailsService;
@@ -44,6 +45,9 @@ public class CustomerController {
 	
 	@Autowired
 	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private TravelRepositiory travelRepository;
 	
 	@GetMapping("/customer/{email}")
 	public ResponseEntity<Customer> getCustomerByEmail(@PathVariable String email)
@@ -69,7 +73,19 @@ public class CustomerController {
 							orElseThrow(() -> new ResourceNotFoundException("Customer could not be found: Loggin again! "));
 		
 		customer.setTravelOrders(customerUpdate.getTravelOrders());
-		customerRepository.save(customer);					
+		customer.getTravelOrders().stream().forEach(travel -> {
+			System.out.println(travel.getCustomer().size()); 
+			travelRepository.save(travel);
+		});
+//		for(int i = 0; i<customer.getTravelOrders().size(); i++)
+//		{
+//			
+//		}
+		
+		
+		
+		customerRepository.save(customer);
+		
 							
 		return customer;
 	}
