@@ -32,10 +32,7 @@ public class Customer {
 	
 	@ManyToMany(mappedBy = "customer")
 	@JsonProperty("orders")
-	private List<Travel> travelOrders;
-	
-	private boolean paid  = false;
-	
+	private List<Travel> travelOrders;	
 	
 	public Customer() {}
 
@@ -157,14 +154,6 @@ public class Customer {
 
 	public void setTravelOrders(List<Travel> travelOrders) {
 		this.travelOrders = travelOrders;
-	}
-
-	public boolean isPaid() {
-		return paid;
-	}
-
-	public void setPaid(boolean paid) {
-		this.paid = paid;
 	}
 		
 }
