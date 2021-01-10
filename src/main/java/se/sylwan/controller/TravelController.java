@@ -56,7 +56,7 @@ public class TravelController {
 	}
 	
 	@GetMapping("/aiplanes/all")
-	public List<Plane> getAllPlanes(@RequestBody Plane plane)
+	public List<Plane> getAllPlanes()
 	{
 		return planeRepository.findAll();
 	}
