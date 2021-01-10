@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Travel {
@@ -22,6 +23,7 @@ public class Travel {
 	
 	@OneToOne
 	@JoinColumn(name="plane")
+	@JsonIgnoreProperties({"travelDestination"})
 	private Plane plane;
 	
 	
