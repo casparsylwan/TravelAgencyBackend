@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -33,6 +32,7 @@ public class Customer {
 	private boolean active = true;	
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy = "customerInTheSeat")
+	@JsonProperty("orders")
 	private List<Seat> travelSeat;
 	
 	public Customer() {}
