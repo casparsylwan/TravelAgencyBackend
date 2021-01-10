@@ -23,8 +23,8 @@ public class Plane {
 	
 	private Integer numberOfSeats ;
 	
-	@OneToOne(mappedBy = "plane")
 	@JsonIgnore
+	@OneToOne(mappedBy = "plane")
 	private Travel TravelDestination;
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy = "plane")
