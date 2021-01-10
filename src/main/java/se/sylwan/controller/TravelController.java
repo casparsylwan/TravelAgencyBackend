@@ -15,11 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import se.sylwan.exception.ResourceAlreadyExsistException;
+import se.sylwan.exception.ResourceNotFoundException;
 import se.sylwan.model.Airport;
 import se.sylwan.model.Plane;
+import se.sylwan.model.Seat;
 import se.sylwan.model.Travel;
 import se.sylwan.repository.AirportRepository;
 import se.sylwan.repository.PlaneRepository;
+import se.sylwan.repository.SeatRepository;
 import se.sylwan.repository.TravelRepositiory;
 
 @RestController
@@ -35,6 +38,9 @@ public class TravelController {
 	
 	@Autowired
 	private PlaneRepository planeRepository;
+	
+	@Autowired
+	private SeatRepository seatRepository;
 	
 	@GetMapping("/airports/all")
 	public List<Airport> getAllAirports()
@@ -70,6 +76,23 @@ public class TravelController {
 			throw new ResourceAlreadyExsistException("Plane already exsist: " + plane.getName() + " with id."); 
 		}
 		
+		planeRepository.save(plane);
+		
+		return plane;
+	}
+	
+	@PostMapping("/Seat/new/{planeId}")
+	public Plane createSeat(@PathVariable Integer planeId, @RequestBody Seat seat)
+	{
+		Plane plane = planeRepository.findById(planeId).orElseThrow(() -> new ResourceNotFoundException("Wrong plane id: " + planeId));
+		
+		if(seatRepository.existsById(seat.getId()))
+		{
+			throw new ResourceAlreadyExsistException("Seat already exsist: " + seat.getSeatNumber() + " with id."); 
+		}
+		
+		seatRepository.save(seat);
+		plane.getSeat().add(seat);
 		planeRepository.save(plane);
 		
 		return plane;
