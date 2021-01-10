@@ -20,6 +20,8 @@ public class Plane {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	private String name;
+	
 	private Integer numberOfSeats ;
 	
 	@OneToOne(mappedBy = "plane")
@@ -62,8 +64,22 @@ public class Plane {
 
 	public void setTravelDestination(Travel travelDestination) {
 		TravelDestination = travelDestination;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Seat> getSeat() {
+		return seat;
+	}
+
+	public void setSeat(List<Seat> seat) {
+		this.seat = seat;
 	} 
-	
-	
 	
 }

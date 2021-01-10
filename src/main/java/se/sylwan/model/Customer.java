@@ -156,5 +156,5 @@ public class Customer {
 	public void setTravelSeat(List<Seat> travelSeat) {
 		this.travelSeat = travelSeat;
 	}
-
+	
 }
