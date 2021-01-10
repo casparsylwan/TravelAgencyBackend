@@ -74,6 +74,8 @@ public class CustomerController {
 							orElseThrow(() -> new ResourceNotFoundException("Customer could not be found: Loggin again! "));
 		
 			//Uppdate stament
+		customer.setTravelSeat(customerUpdate.getTravelSeat());
+		customerRepository.save(customer);
 		
 							
 		return customer;
