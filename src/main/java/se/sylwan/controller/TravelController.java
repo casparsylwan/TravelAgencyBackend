@@ -88,8 +88,8 @@ public class TravelController {
 		
 		seat.setPlane(plane);
 		seatRepository.save(seat);
-//		plane.getSeat().add(seat);
-//		planeRepository.save(plane);
+		plane.getSeat().add(seat);
+		planeRepository.save(plane);
 		
 		return plane;
 	}
