@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -33,6 +34,7 @@ public class Customer {
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy = "customerInTheSeat")
 	@JsonProperty("orders")
+	@JsonIgnoreProperties({"orders"})
 	private List<Seat> travelSeat;
 	
 	public Customer() {}

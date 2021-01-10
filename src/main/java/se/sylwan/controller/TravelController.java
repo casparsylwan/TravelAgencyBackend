@@ -86,9 +86,10 @@ public class TravelController {
 	{
 		Plane plane = planeRepository.findById(planeId).orElseThrow(() -> new ResourceNotFoundException("Wrong plane id: " + planeId));
 		
+		seat.setPlane(plane);
 		seatRepository.save(seat);
-		plane.getSeat().add(seat);
-		planeRepository.save(plane);
+//		plane.getSeat().add(seat);
+//		planeRepository.save(plane);
 		
 		return plane;
 	}
