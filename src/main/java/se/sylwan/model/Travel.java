@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -24,12 +25,10 @@ public class Travel {
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
 	private long id;
 	
-	@ManyToMany
-	@JoinTable(name="customer_travel",
-    joinColumns=@JoinColumn(name="email"),
-    inverseJoinColumns=@JoinColumn(name="travel_id"))
-	@JsonIgnore
-	private List<Customer> customer;
+	@OneToOne
+	@JoinColumn(name="plane")
+	private Plane plane;
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "departure")
@@ -91,14 +90,6 @@ public class Travel {
 		this.depatureDate = depatureDate;
 	}
 
-	public List<Customer> getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(List<Customer> customer) {
-		this.customer = customer;
-	}
-
 	public Integer getPrice() {
 		return price;
 	}
@@ -113,6 +104,14 @@ public class Travel {
 
 	public void setPaid(boolean paid) {
 		this.paid = paid;
+	}
+
+	public Plane getPlane() {
+		return plane;
+	}
+
+	public void setPlane(Plane plane) {
+		this.plane = plane;
 	}
 			
 }

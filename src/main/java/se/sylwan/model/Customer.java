@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -25,15 +27,13 @@ public class Customer {
 	
 	private String lastName;
 	
-//	@Column(name="roles_travel")
 	private String roles;
 	
 	@Column(name="active_member")
-	private boolean active = true;
+	private boolean active = true;	
 	
-	@ManyToMany(mappedBy = "customer")
-	@JsonProperty("orders")
-	private List<Travel> travelOrders;	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy = "customerInTheSeat")
+	private List<Seat> travelSeat;
 	
 	public Customer() {}
 
@@ -149,12 +149,12 @@ public class Customer {
 		this.active = active;
 	}
 
-	public List<Travel> getTravelOrders() {
-		return travelOrders;
+	public List<Seat> getTravelSeat() {
+		return travelSeat;
 	}
 
-	public void setTravelOrders(List<Travel> travelOrders) {
-		this.travelOrders = travelOrders;
+	public void setTravelSeat(List<Seat> travelSeat) {
+		this.travelSeat = travelSeat;
 	}
-		
+
 }
