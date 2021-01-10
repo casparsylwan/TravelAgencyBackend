@@ -20,6 +20,7 @@ public class Seat {
 	private Integer id;
 	
 	@ManyToOne
+	@JsonIgnoreProperties({"seat"})
 	private Plane plane;
 	
 	private Integer seatNumber;
