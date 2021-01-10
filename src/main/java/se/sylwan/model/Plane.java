@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Plane {
 	
@@ -25,6 +27,7 @@ public class Plane {
 	private Travel TravelDestination;
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy = "plane")
+	@JsonIgnoreProperties({"plane"})//travelSeat
 	private List<Seat> seat;
 
 	public Plane() {
