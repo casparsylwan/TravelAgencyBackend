@@ -27,6 +27,7 @@ public class Travel {
 	
 	@OneToOne
 	@JoinColumn(name="plane")
+	@JsonIgnore
 	private Plane plane;
 	
 	
