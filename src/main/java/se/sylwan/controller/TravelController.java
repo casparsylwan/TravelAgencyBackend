@@ -81,19 +81,20 @@ public class TravelController {
 		return plane;
 	}
 	
-	@PostMapping("/Seat/new/{planeId}")
+	@PostMapping("/seat/new/{planeId}")
 	public Plane createSeat(@PathVariable Integer planeId, @RequestBody Seat seat)
 	{
 		Plane plane = planeRepository.findById(planeId).orElseThrow(() -> new ResourceNotFoundException("Wrong plane id: " + planeId));
-		
+		System.out.println("CaaSSpppAArr");
 		if(seatRepository.existsById(seat.getId()))
 		{
+			System.out.println("123456789");
 			throw new ResourceAlreadyExsistException("Seat already exsist: " + seat.getSeatNumber() + " with id."); 
 		}
 		
-		seatRepository.save(seat);
+//		seatRepository.save(seat);
 		plane.getSeat().add(seat);
-		planeRepository.save(plane);
+//		planeRepository.save(plane);
 		
 		return plane;
 	}
