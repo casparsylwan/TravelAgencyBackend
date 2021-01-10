@@ -55,6 +55,12 @@ public class TravelController {
 		return airport;
 	}
 	
+	@GetMapping("/aiplanes/all")
+	public List<Plane> getAllPlanes(@RequestBody Plane plane)
+	{
+		return planeRepository.findAll();
+	}
+	
 	@PostMapping("/airplane/new")
 	public Plane createPlane(@RequestBody Plane plane)
 	{
