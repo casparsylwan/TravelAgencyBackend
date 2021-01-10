@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 public class Seat {
@@ -23,6 +25,7 @@ public class Seat {
 	private Integer seatNumber;
 	
 	@ManyToOne
+	@JsonIgnoreProperties({"travelSeat"})
 	private Customer customerInTheSeat;
 	
 	public Seat() 
