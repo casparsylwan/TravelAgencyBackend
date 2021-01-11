@@ -57,7 +57,15 @@ public class TravelController {
 		return airport;
 	}
 	
-	@GetMapping("/aiplanes/all")
+	@GetMapping("/airplane/{planeName}")
+	public Plane getPlaneByName(@PathVariable String planeName)
+	{
+		 Plane plane = planeRepository.findById(planeName)
+				 .orElseThrow(() -> new ResourceNotFoundException("Plane with name could not be found: id= " + planeName));
+		return plane;
+	}
+	
+	@GetMapping("/airplanes/all")
 	public List<Plane> getAllPlanes()
 	{
 		return planeRepository.findAll();
