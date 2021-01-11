@@ -4,15 +4,18 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class Travel {
@@ -21,9 +24,9 @@ public class Travel {
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
 	private long id;
 	
-	@OneToOne
+	@JsonIgnoreProperties({"travelDestinations"})
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="plane")
-	@JsonIgnoreProperties({"travelDestination"})
 	private Plane plane;
 	
 	
@@ -41,6 +44,10 @@ public class Travel {
 	private Integer price;
 	
 	private boolean paid  = false;
+	
+	@OneToMany( fetch=FetchType.LAZY, mappedBy="travel")
+	@JsonIgnoreProperties({"travel"})
+	private List<Seat> passangerList;
 
 	public Travel() {
 		super();
@@ -109,6 +116,14 @@ public class Travel {
 
 	public void setPlane(Plane plane) {
 		this.plane = plane;
+	}
+
+	public List<Seat> getPassangerList() {
+		return passangerList;
+	}
+
+	public void setPassangerList(List<Seat> passangerList) {
+		this.passangerList = passangerList;
 	}
 			
 }

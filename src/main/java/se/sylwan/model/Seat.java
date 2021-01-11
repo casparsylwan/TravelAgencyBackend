@@ -1,43 +1,43 @@
 package se.sylwan.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @Entity
 public class Seat {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	
-	@ManyToOne
-	@JsonIgnoreProperties({"seat"})
-	private Plane plane;
-	
+		
 	private Integer seatNumber;
 	
 	@ManyToOne
-	@JsonIgnoreProperties({"travelSeat"})
-	private Customer customerInTheSeat;
+	@JoinColumn(name = "passanger")
+	@JsonIgnoreProperties({"travelOrders"})
+	private Customer passanger;
+	
+	@ManyToOne
+	@JoinColumn(name = "travel")
+	private Travel travel;
 	
 	public Seat() 
 	{
 		super();
 	}
 
-	public Seat(Integer id, Plane plane, Integer seatNumber) {
+	public Seat(Integer id, Integer seatNumber) {
 		super();
 		this.id = id;
-		this.plane = plane;
 		this.seatNumber = seatNumber;
 	}
 
@@ -49,13 +49,6 @@ public class Seat {
 		this.id = id;
 	}
 
-	public Plane getPlane() {
-		return plane;
-	}
-
-	public void setPlane(Plane plane) {
-		this.plane = plane;
-	}
 
 	public Integer getSeatNumber() {
 		return seatNumber;
@@ -65,13 +58,20 @@ public class Seat {
 		this.seatNumber = seatNumber;
 	}
 
-	public Customer getCustomerInTheSeat() {
-		return customerInTheSeat;
+	public Travel getTravel() {
+		return travel;
 	}
 
-	public void setCustomerInTheSeat(Customer customerInTheSeat) {
-		this.customerInTheSeat = customerInTheSeat;
+	public void setTravel(Travel travel) {
+		this.travel = travel;
 	}
-	
+
+	public Customer getPassanger() {
+		return passanger;
+	}
+
+	public void setPassanger(Customer passanger) {
+		this.passanger = passanger;
+	}
 	
 }

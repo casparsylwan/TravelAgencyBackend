@@ -69,16 +69,16 @@ public class CustomerController {
 	public Customer updateCustomer(@RequestBody Customer customerUpdate)
 	{
 		
-		System.out.println("CASPAR CASPAR");
-		Customer customer = customerRepository.findByEmail(customerUpdate.getEmail()).
-							orElseThrow(() -> new ResourceNotFoundException("Customer could not be found: Loggin again! "));
-		
-			//Uppdate stament
-		customer.setTravelSeat(customerUpdate.getTravelSeat());
-		customerRepository.save(customer);
+//		System.out.println("CASPAR CASPAR");
+//		Customer customer = customerRepository.findByEmail(customerUpdate.getEmail()).
+//							orElseThrow(() -> new ResourceNotFoundException("Customer could not be found: Loggin again! "));
+//		
+//			//Uppdate stament
+//		customer.setTravelSeat(customerUpdate.getTravelSeat());
+//		customerRepository.save(customer);
 		
 							
-		return customer;
+		return customerUpdate;
 	}
 	
 	

@@ -7,47 +7,43 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+
 public class Plane {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
-	
 	private String name;
 	
 	private Integer numberOfSeats ;
 	
-	@OneToOne(fetch=FetchType.LAZY, mappedBy = "plane")
-	private Travel TravelDestination;
+	@JsonIgnoreProperties({"plane"})
+	@OneToMany(mappedBy = "plane")
+	private List<Travel> travelDestinations;
 	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy = "plane")
-	@JsonIgnore//travelSeat
-	private List<Seat> seat;
+//	@OneToOne(fetch=FetchType.LAZY, mappedBy = "plane")
+//	private Travel TravelDestination;
+	
+//	@OneToMany(fetch=FetchType.LAZY, mappedBy = "plane")
+//	@JsonIgnore//travelSeat
+//	private List<Seat> seat;
 
 	public Plane() {
 		super();
 	}
 
-	public Plane(Integer id, Integer numberOfSeats) {
+	public Plane( Integer numberOfSeats) {
 		super();
-		this.id = id;
 		this.numberOfSeats = numberOfSeats;
 		
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public Integer getNumberOfSeats() {
@@ -59,13 +55,13 @@ public class Plane {
 	}
 
 
-	public Travel getTravelDestination() {
-		return TravelDestination;
-	}
-
-	public void setTravelDestination(Travel travelDestination) {
-		TravelDestination = travelDestination;
-	}
+//	public Travel getTravelDestination() {
+//		return TravelDestination;
+//	}
+//
+//	public void setTravelDestination(Travel travelDestination) {
+//		TravelDestination = travelDestination;
+//	}
 
 	public String getName() {
 		return name;
@@ -75,12 +71,20 @@ public class Plane {
 		this.name = name;
 	}
 
-	public List<Seat> getSeat() {
-		return seat;
+	public List<Travel> getTravelDestinations() {
+		return travelDestinations;
 	}
 
-	public void setSeat(List<Seat> seat) {
-		this.seat = seat;
-	} 
+	public void setTravelDestinations(List<Travel> travelDestinations) {
+		this.travelDestinations = travelDestinations;
+	}
+
+//	public List<Seat> getSeat() {
+//		return seat;
+//	}
+//
+//	public void setSeat(List<Seat> seat) {
+//		this.seat = seat;
+//	} 
 	
 }

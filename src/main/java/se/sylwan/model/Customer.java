@@ -30,13 +30,11 @@ public class Customer {
 	private String roles;
 	
 	@Column(name="active_member")
-	private boolean active = true;	
+	private boolean active = true;
 	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy = "customerInTheSeat")
-	@JsonProperty("orders")
-	@JsonIgnoreProperties({"customerInTheSeat"})
-	private List<Seat> travelSeat;
-	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy = "passanger")
+	private List<Seat> travelOrders;
+		
 	public Customer() {}
 
 	public Customer(String email, String password, String firstName, String lastName, String roles, boolean active) {
@@ -151,12 +149,12 @@ public class Customer {
 		this.active = active;
 	}
 
-	public List<Seat> getTravelSeat() {
-		return travelSeat;
+	public List<Seat> getTravelOrders() {
+		return travelOrders;
 	}
 
-	public void setTravelSeat(List<Seat> travelSeat) {
-		this.travelSeat = travelSeat;
+	public void setTravelOrders(List<Seat> travelOrders) {
+		this.travelOrders = travelOrders;
 	}
-	
+
 }

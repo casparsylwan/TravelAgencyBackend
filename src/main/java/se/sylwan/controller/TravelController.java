@@ -51,10 +51,6 @@ public class TravelController {
 	@PostMapping("/airport/new")
 	public Airport registerNewAirport(@RequestBody Airport airport)
 	{
-		if(airportRepository.existsById(airport.getName()))
-		{
-			throw new ResourceAlreadyExsistException("Airport already exsist: " + airport.getName()); 
-		}
 		
 		airportRepository.save(airport);
 		
@@ -71,27 +67,22 @@ public class TravelController {
 	public Plane createPlane(@RequestBody Plane plane)
 	{
 		
-		if(planeRepository.existsById(plane.getId()))
-		{
-			throw new ResourceAlreadyExsistException("Plane already exsist: " + plane.getName() + " with id."); 
-		}
-		
 		planeRepository.save(plane);
 		
 		return plane;
 	}
 	
-	@PostMapping("/seat/new/{planeId}")
-	public Plane createSeat(@PathVariable Integer planeId, @RequestBody Seat seat)
+	@PostMapping("/seat/new/{travelId}")
+	public Travel createSeat(@PathVariable long travelId, @RequestBody Seat seat)
 	{
-		Plane plane = planeRepository.findById(planeId).orElseThrow(() -> new ResourceNotFoundException("Wrong plane id: " + planeId));
-		
-		seat.setPlane(plane);
+		Travel travel = travelRepositiory.findById(travelId)
+				.orElseThrow(() -> new ResourceNotFoundException("Travel with id could not be found: id= " + travelId));
+		seat.setTravel(travel);
 		seatRepository.save(seat);
-		plane.getSeat().add(seat);
-		planeRepository.save(plane);
-		
-		return plane;
+		travel.getPassangerList().add(seat);
+		travelRepositiory.save(travel);	
+		travel = travelRepositiory.findById(travel.getId()).orElseThrow(() -> new ResourceNotFoundException("Travel with id could not be found: id= " + travelId));
+		return travel;
 	}
 	
 	@GetMapping("/travel/all")
@@ -103,6 +94,7 @@ public class TravelController {
 	@PostMapping("/travel/new")
 	public Travel createNewTravel(@RequestBody Travel travel)
 	{
+		System.out.println("Hej!");
 		travelRepositiory.save(travel);
 		return travel;
 	}
