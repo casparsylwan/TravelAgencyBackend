@@ -34,7 +34,7 @@ public class Customer {
 	
 	@OneToMany(fetch=FetchType.EAGER, mappedBy = "passanger")
 	@JsonIgnoreProperties({"passanger", "travel"})
-	@JsonProperty("orders")
+//	@JsonProperty("orders")
 	private List<Seat> travelOrders;
 		
 	public Customer() {}
@@ -151,12 +151,12 @@ public class Customer {
 		this.active = active;
 	}
 
-	@JsonProperty("orders")
+	
 	public List<Seat> getTravelOrders() {
 		return travelOrders;
 	}
 
-	@JsonProperty("orders")
+	
 	public void setTravelOrders(List<Seat> travelOrders) {
 		this.travelOrders = travelOrders;
 	}
