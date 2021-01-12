@@ -88,6 +88,7 @@ public class TravelController {
 		seat.setTravel(travel);
 		seatRepository.save(seat);
 		travel.getPassangerList().add(seat);
+		System.out.println("Kom hitt!");
 		travelRepositiory.save(travel);	
 		travel = travelRepositiory.findById(travel.getId()).orElseThrow(() -> new ResourceNotFoundException("Travel with id could not be found: id= " + travelId));
 		return travel;
