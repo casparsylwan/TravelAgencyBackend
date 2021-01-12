@@ -99,6 +99,12 @@ public class TravelController {
 		return travelRepositiory.findAll();
 	}
 	
+	@PostMapping("/travel/customer")
+	public List<Travel> getCustomersTravel(@RequestBody Iterable<Long> travelList)
+	{
+		return travelRepositiory.findAllById(travelList);
+	}
+	
 	@PostMapping("/travel/new")
 	public Travel createNewTravel(@RequestBody Travel travel)
 	{
