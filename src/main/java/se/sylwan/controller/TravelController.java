@@ -91,7 +91,6 @@ public class TravelController {
 		seat.setTravel(travel);
 		seatRepository.save(seat);
 		travel.getPassangerList().add(seat);
-		System.out.println("Kom hitt!");
 		travelRepositiory.save(travel);	
 		travel = travelRepositiory.findById(travel.getId()).orElseThrow(() -> new ResourceNotFoundException("Travel with id could not be found: id= " + travelId));
 		return travel;
@@ -104,10 +103,10 @@ public class TravelController {
 	}
 	
 	@PostMapping("/travel/customer")
-	public Set<Travel> getCustomersTravel(@RequestBody Iterable<Integer> seatList)
+	public List<Travel> getCustomersTravel(@RequestBody Iterable<Integer> seatList)
 	{
 		
-		Set<Travel> travelSet = new HashSet<>(); 
+		List<Travel> travelSet = new ArrayList<>(); 
 		List<Seat> seats = seatRepository.findAllById(seatList);
 		seats.forEach(seat -> travelSet.add(seat.getTravel()));
 		
