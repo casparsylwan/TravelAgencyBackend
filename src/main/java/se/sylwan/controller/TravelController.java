@@ -103,6 +103,7 @@ public class TravelController {
 	@PostMapping("/travel/customer")
 	public List<Travel> getCustomersTravel(@RequestBody Iterable<Long> travelList)
 	{
+		System.out.println("CAS PPAS" + travelRepositiory.findAllById(travelList).size());
 		return travelRepositiory.findAllById(travelList);
 	}
 	
