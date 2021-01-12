@@ -33,7 +33,7 @@ public class Customer {
 	private boolean active = true;
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy = "passanger")
-	@JsonIgnoreProperties({"passangerList"})
+	@JsonIgnoreProperties({"passangerList","plane", "fromAirport", "toAirport", "depatureDate", "price", "paid"})
 	private List<Seat> travelOrders;
 		
 	public Customer() {}
