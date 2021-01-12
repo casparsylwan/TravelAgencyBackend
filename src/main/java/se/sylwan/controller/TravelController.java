@@ -108,7 +108,7 @@ public class TravelController {
 	{
 		
 		Set<Travel> travelSet = new HashSet<>(); 
-		List<Seat> seats = seatRepository.findAllByIds(seatList);
+		List<Seat> seats = seatRepository.findAllById(seatList);
 		seats.forEach(seat -> travelSet.add(seat.getTravel()));
 		
 		return travelSet;

@@ -8,6 +8,5 @@ import se.sylwan.model.Seat;
 
 public interface SeatRepository extends JpaRepository<Seat, Integer> {
 
-	List<Seat> findAllByIds(Iterable<Integer> seatList);
 
 }
