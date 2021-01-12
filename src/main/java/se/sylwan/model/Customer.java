@@ -32,7 +32,7 @@ public class Customer {
 	@Column(name="active_member")
 	private boolean active = true;
 	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy = "passanger")
+	@OneToMany(fetch=FetchType.EAGER, mappedBy = "passanger")
 	@JsonIgnoreProperties({"passanger", "travel"})
 	@JsonProperty("orders")
 	private List<Seat> travelOrders;
