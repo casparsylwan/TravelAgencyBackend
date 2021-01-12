@@ -120,7 +120,7 @@ public class TravelController {
 	}
 	
 	@GetMapping("/travel/customerorder/{email}")
-	public List<Seat> getCustomersTravelByParam(@RequestParam String email)
+	public List<Seat> getCustomersTravelByParam(@PathVariable String email)
 	{
 		
 		Customer customer = customerRepository.findById(email)
