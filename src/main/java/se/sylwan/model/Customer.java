@@ -34,6 +34,7 @@ public class Customer {
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy = "passanger")
 	@JsonIgnoreProperties({"passanger", "travel"})
+	@JsonProperty("orders")
 	private List<Seat> travelOrders;
 		
 	public Customer() {}
