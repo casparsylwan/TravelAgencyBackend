@@ -1,6 +1,9 @@
 package se.sylwan.controller;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
@@ -101,10 +104,14 @@ public class TravelController {
 	}
 	
 	@PostMapping("/travel/customer")
-	public List<Travel> getCustomersTravel(@RequestBody Iterable<Long> travelList)
+	public Set<Travel> getCustomersTravel(@RequestBody Iterable<Integer> seatList)
 	{
-		System.out.println("CAS PPAS" + travelRepositiory.findAllById(travelList).size());
-		return travelRepositiory.findAllById(travelList);
+		
+		Set<Travel> travelSet = new HashSet<>(); 
+		List<Seat> seats = seatRepository.findAllByIds(seatList);
+		seats.forEach(seat -> travelSet.add(seat.getTravel()));
+		
+		return travelSet;
 	}
 	
 	@PostMapping("/travel/new")

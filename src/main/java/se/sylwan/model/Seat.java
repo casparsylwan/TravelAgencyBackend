@@ -28,7 +28,7 @@ public class Seat {
 	
 	@ManyToOne
 	@JoinColumn(name = "travel")
-	private Travel travel;
+	private Travel travel; 
 	
 	public Seat() 
 	{
