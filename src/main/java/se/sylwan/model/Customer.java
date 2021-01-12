@@ -146,15 +146,17 @@ public class Customer {
 	}
 
 
-
+	
 	public void setActive(boolean active) {
 		this.active = active;
 	}
 
+	@JsonProperty("orders")
 	public List<Seat> getTravelOrders() {
 		return travelOrders;
 	}
 
+	@JsonProperty("orders")
 	public void setTravelOrders(List<Seat> travelOrders) {
 		this.travelOrders = travelOrders;
 	}
