@@ -102,6 +102,15 @@ public class TravelController {
 		return travel;
 	}
 	
+	@DeleteMapping("/delete/seat/{seatId}/{travelId}/{email}")
+	public void deleteAnOrderSeat(@PathVariable Integer seatId, @PathVariable long travelId, @PathVariable String email)
+	{
+		seatRepository.deleteById(seatId);
+		//Customer customer = customerRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Travel with id could not be found: id= " + email));
+
+	}
+	
+	
 	@GetMapping("/travel/all")
 	public List<Travel> getAllTravel()
 	{
