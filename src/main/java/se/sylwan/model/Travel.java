@@ -46,7 +46,7 @@ public class Travel {
 	private boolean paid  = false;
 	
 	@OneToMany( fetch=FetchType.LAZY, mappedBy="travel")
-	@JsonIgnoreProperties({"travel"})
+	@JsonIgnoreProperties({"travel", "passanger"})
 	private List<Seat> passangerList;
 
 	public Travel() {
