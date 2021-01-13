@@ -102,6 +102,14 @@ public class TravelController {
 		return travel;
 	}
 	
+	@GetMapping("/seat/pay/{seatId}")
+	public void payeSeat(@PathVariable Integer seatId)
+	{
+		Seat seat = seatRepository.findById(seatId).orElseThrow(() -> new ResourceNotFoundException("Travel with id could not be found: id= " + seatId));
+		seat.setPaid(true);
+		seatRepository.save(seat);
+	}
+	
 	@DeleteMapping("/delete/seat/{seatId}/{travelId}/{email}")
 	public void deleteAnOrderSeat(@PathVariable Integer seatId, @PathVariable long travelId, @PathVariable String email)
 	{
