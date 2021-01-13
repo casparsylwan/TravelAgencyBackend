@@ -63,7 +63,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter{
 //			.authorizeRequests().antMatchers("/api/v1/customer/**").hasAnyRole("ADMIN", "CUSTOMER")
 //			.anyRequest().authenticated();
 		http.cors().and().csrf().disable()
-		.authorizeRequests().antMatchers("/api/v1/authenticate", "/api/v1/ping", "/api/v1/customer/new", "/api/v1/airports/all").permitAll().
+		.authorizeRequests().antMatchers("/api/v1/authenticate", "/api/v1/ping", "/api/v1/customer/new", "/api/v1/airports/all", "/api/v1/airplanes/all").permitAll().
 				anyRequest().authenticated().and().
 				exceptionHandling().and().sessionManagement()
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
