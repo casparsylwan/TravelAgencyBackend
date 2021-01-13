@@ -40,11 +40,7 @@ public class Travel {
 	
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm")
 	private Timestamp depatureDate;
-	
-	private Integer price;
-	
-	private boolean paid  = false;
-	
+		
 	@OneToMany( fetch=FetchType.LAZY, mappedBy="travel")
 	@JsonIgnoreProperties({"travel"})
 	private List<Seat> passangerList;
@@ -53,13 +49,12 @@ public class Travel {
 		super();
 	}
 
-	public Travel(long id, Airport fromAirport, Airport toAirport, Timestamp depatureDate, Integer price) {
+	public Travel(long id, Airport fromAirport, Airport toAirport, Timestamp depatureDate) {
 		super();
 		this.id = id;
 		this.fromAirport = fromAirport;
 		this.toAirport = toAirport;
 		this.depatureDate = depatureDate;
-		this.price = price;
 	}
 
 	public long getId() {
@@ -92,22 +87,6 @@ public class Travel {
 
 	public void setDepatureDate(Timestamp depatureDate) {
 		this.depatureDate = depatureDate;
-	}
-
-	public Integer getPrice() {
-		return price;
-	}
-
-	public void setPrice(Integer price) {
-		this.price = price;
-	}
-
-	public boolean isPaid() {
-		return paid;
-	}
-
-	public void setPaid(boolean paid) {
-		this.paid = paid;
 	}
 
 	public Plane getPlane() {

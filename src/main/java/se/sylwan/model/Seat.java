@@ -28,7 +28,11 @@ public class Seat {
 	
 	@ManyToOne
 	@JoinColumn(name = "travel")
-	private Travel travel; 
+	private Travel travel;
+	
+	private boolean paid  = false;
+	
+	private Integer price;
 	
 	public Seat() 
 	{
@@ -72,6 +76,22 @@ public class Seat {
 
 	public void setPassanger(Customer passanger) {
 		this.passanger = passanger;
+	}
+
+	public boolean isPaid() {
+		return paid;
+	}
+
+	public void setPaid(boolean paid) {
+		this.paid = paid;
+	}
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
 	}
 	
 }
